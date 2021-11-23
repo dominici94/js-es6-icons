@@ -122,36 +122,89 @@ const icons = [
 // Inizialmente può essere sufficiente stampare dei semplici div, senza alcuno stile, con all'interno l'icona e uno span con il nome. Solamente quando la parte logica è completa, ci dedichiamo al css.
 // N.B. :collisione: Il layout dovete farlo voi, ma potete personalizzarlo
 
-console.log(icons);
-
 const topMain = document.querySelector('.top-main');
 topMain.innerHTML = `
 	<span>Filtra per tipo</span>
 	<select name="" id="seleziona">
-		<option value="all">All</option>
-		<option value="animal">animal</option>
-		<option value="vegetable">vegetable</option>
-		<option value="user">user</option>
+		<option value="1">All</option>
+		<option value="2">animal</option>
+		<option value="3">vegetable</option>
+		<option value="4">user</option>
 	</select>
 `;
 
 
-
-document.getElementById('seleziona').addEventListener('click', function(){
-	//quando clicco sulla selezione mi devono comparire tali icone
-});
-
-
-
-
-
-
-
-
 const contenitoreBox = document.querySelector('.main-container');
 
-for(let i=0; i<icons.length; i++){
-	contenitoreBox.innerHTML += `
-		<div class="box"><i class="fas fa-${icons[i].name} ${icons[i].color} my-icon"></i>${icons[i].name}</div>
-	`;
+const animals = icons.filter(icona => icona.type == 'animal');
+console.log(animals);
+
+const vegetables = icons.filter(icona => icona.type == 'vegetable');
+console.log(vegetables);
+
+const users = icons.filter(icona => icona.type == 'user');
+console.log(users);
+
+
+document.getElementById('seleziona').addEventListener('click', function(){
+	//quando clicco sulla selezione mi devono comparire tali icone;
+	show();
+});
+
+function show(){
+	contenitoreBox.innerHTML = '';
+
+	const valoreSelect = document.getElementById('seleziona').value;
+
+
+	switch(valoreSelect){
+		case '1':
+			generaIcone();
+			break;
+		case '2':
+			generaAnimali();
+			break;
+		case '3':
+			generaVegetali();
+			break;
+		case '4':
+			generaUser();
+	}
+	
+	function generaIcone(){
+	
+		for(let i=0; i<icons.length; i++){
+			contenitoreBox.innerHTML += `
+				<div class="box"><i class="fas fa-${icons[i].name} ${icons[i].color} my-icon"></i>${icons[i].name}</div>
+			`;
+		}
+	}
+	
+	function generaAnimali(){
+		
+		for(let i=0; i<animals.length; i++){
+			contenitoreBox.innerHTML += `
+				<div class="box"><i class="fas fa-${animals[i].name} ${animals[i].color} my-icon"></i>${animals[i].name}</div>
+			`;
+		}
+	}
+	
+	function generaVegetali(){
+		
+		for(let i=0; i<vegetables.length; i++){
+			contenitoreBox.innerHTML += `
+				<div class="box"><i class="fas fa-${vegetables[i].name} ${vegetables[i].color} my-icon"></i>${vegetables[i].name}</div>
+			`;
+		}
+	}
+	
+	function generaUser(){
+		
+		for(let i=0; i<users.length; i++){
+			contenitoreBox.innerHTML += `
+				<div class="box"><i class="fas fa-${users[i].name} ${users[i].color} my-icon"></i>${users[i].name}</div>
+			`;
+		}
+	}
+
 }
