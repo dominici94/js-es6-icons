@@ -38,11 +38,29 @@ header{
 
 .box{
     height: 150px;
-    width: 150px;
+    width: calc(100% / 4 - 20px);
     margin: 10px;
+    font-size: 40px;
     background-color: white;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.my-icon{
+    font-size: 40px;
+}
+
+.blue{
+    color: blue;
+}
+
+.green{
+    color: green;
+}
+
+.orange{
+    color: orange;
 }
